@@ -13,4 +13,5 @@ public interface ICommandeService {
     Commande updateCommande(UUID commId,Commande commande);
     Commande deleteCommande(UUID commId);
     List<Commande>retrieveCommande();
+    Commande findCommandeById(UUID commId);
 }

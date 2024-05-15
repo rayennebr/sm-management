@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  smdatabase:
+    image: postgres:alpine
+    container_name: smDatabase
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: smdatabase
+      POSTGRES_PASSWORD: root
+  prometheusSm:
+    image: prom/prometheus
+    container_name: prometheusSm
+    restart: unless-stopped
+    volumes:
+      - ./src/main/resources:/etc/prometheus/
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+  grafanaSm:
+    image: grafana/grafana-oss
+    container_name: grafanaSm
+    restart: unless-stopped
+    volumes:
+      - ./grafana:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    links:
+      - prometheusSm:prometheusSm
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=password
+      - GF_LOG_MODE=console file
+  postgres-exporter-sm:
+    image: prometheuscommunity/postgres-exporter
+    container_name: postgres-exporter-sm
+    ports:
+      - "9187:9187"
+    depends_on:
+      - smdatabase
+      - prometheusSm

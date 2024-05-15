@@ -44,6 +44,12 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public Product getProductById(UUID prdId) {
+        return productRepository.findById(prdId)
+                .orElseThrow(()->new NoSuchElementException("produit n'existe pas !"));
+    }
+
+    @Override
     public List<Product> getAllProduct() {
         return productRepository.findAll();
     }

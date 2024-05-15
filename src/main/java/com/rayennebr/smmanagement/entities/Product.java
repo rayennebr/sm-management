@@ -20,11 +20,11 @@ public class Product implements Serializable {
     private UUID catId;
     private UUID stockId;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "catId",columnDefinition = "catId",insertable = false,updatable = false)
+    @JoinColumn(referencedColumnName = "catId",name = "catId",insertable = false,updatable = false)
     private Categorie categorie;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "stockId",columnDefinition = "stockId",insertable = false,updatable = false)
+    @JoinColumn(referencedColumnName = "stockId",name = "stockId",insertable = false,updatable = false)
     private Stock stock;
 
     public Product() {

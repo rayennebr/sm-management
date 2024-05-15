@@ -47,4 +47,10 @@ public class CommandeService implements ICommandeService {
     public List<Commande> retrieveCommande() {
         return commandeRepository.findAll();
     }
+
+    @Override
+    public Commande findCommandeById(UUID commId) {
+        return commandeRepository.findById(commId)
+                .orElseThrow(()->new NoSuchElementException("commande n'existe pas !"));
+    }
 }

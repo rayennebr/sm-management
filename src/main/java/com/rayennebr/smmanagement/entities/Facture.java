@@ -15,9 +15,11 @@ public class Facture implements Serializable {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID factureId;
     private Date factureDate;
-    private Long factureNum;
-    private double total;
+    private double factureTotal;
     private UUID commandeId;
+    private String factureType;
+    private double factureRemise;
+    private String status;
     @ManyToOne
     @JoinColumn(name = "commandeId",referencedColumnName = "commandeId",insertable = false,updatable = false)
     private Commande commande;
@@ -25,12 +27,14 @@ public class Facture implements Serializable {
     public Facture() {
     }
 
-    public Facture(UUID factureId, Date factureDate, Long factureNum, double total, UUID commandeId, Commande commande) {
+    public Facture(UUID factureId, Date factureDate, double factureTotal, UUID commandeId, String factureType, double factureRemise, String status, Commande commande) {
         this.factureId = factureId;
         this.factureDate = factureDate;
-        this.factureNum = factureNum;
-        this.total = total;
+        this.factureTotal = factureTotal;
         this.commandeId = commandeId;
+        this.factureType = factureType;
+        this.factureRemise = factureRemise;
+        this.status = status;
         this.commande = commande;
     }
 
@@ -50,22 +54,6 @@ public class Facture implements Serializable {
         this.factureDate = factureDate;
     }
 
-    public Long getFactureNum() {
-        return factureNum;
-    }
-
-    public void setFactureNum(Long factureNum) {
-        this.factureNum = factureNum;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
     public UUID getCommandeId() {
         return commandeId;
     }
@@ -82,17 +70,49 @@ public class Facture implements Serializable {
         this.commande = commande;
     }
 
+    public double getFactureTotal() {
+        return factureTotal;
+    }
+
+    public void setFactureTotal(double factureTotal) {
+        this.factureTotal = factureTotal;
+    }
+
+    public String getFactureType() {
+        return factureType;
+    }
+
+    public void setFactureType(String factureType) {
+        this.factureType = factureType;
+    }
+
+    public double getFactureRemise() {
+        return factureRemise;
+    }
+
+    public void setFactureRemise(double factureRemise) {
+        this.factureRemise = factureRemise;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Facture facture = (Facture) o;
-        return Double.compare(facture.total, total) == 0 && Objects.equals(factureId, facture.factureId) && Objects.equals(factureDate, facture.factureDate) && Objects.equals(factureNum, facture.factureNum) && Objects.equals(commandeId, facture.commandeId) && Objects.equals(commande, facture.commande);
+        return Double.compare(facture.factureTotal, factureTotal) == 0 && Double.compare(facture.factureRemise, factureRemise) == 0 && Objects.equals(factureId, facture.factureId) && Objects.equals(factureDate, facture.factureDate) && Objects.equals(commandeId, facture.commandeId) && Objects.equals(factureType, facture.factureType) && Objects.equals(status, facture.status) && Objects.equals(commande, facture.commande);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(factureId, factureDate, factureNum, total, commandeId, commande);
+        return Objects.hash(factureId, factureDate, factureTotal, commandeId, factureType, factureRemise, status, commande);
     }
 
     @Override
@@ -100,9 +120,11 @@ public class Facture implements Serializable {
         return "Facture{" +
                 "factureId=" + factureId +
                 ", factureDate=" + factureDate +
-                ", factureNum=" + factureNum +
-                ", total=" + total +
+                ", factureTotal=" + factureTotal +
                 ", commandeId=" + commandeId +
+                ", factureType='" + factureType + '\'' +
+                ", factureRemise=" + factureRemise +
+                ", status='" + status + '\'' +
                 ", commande=" + commande +
                 '}';
     }
