@@ -14,4 +14,5 @@ public interface IProductService {
     Product deleteProduct(UUID prodId);
     Product getProductById(UUID prdId);
     List<Product>getAllProduct();
+    List<Product>verifyProductStock();
 }

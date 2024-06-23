@@ -12,4 +12,6 @@ public interface IStockService {
     Stock updateStock(UUID stockId, Stock Stock);
     Stock deleteStock(UUID stockId);
     List<Stock> getAllStock();
+
+    int getStockQte(UUID stockId);
 }

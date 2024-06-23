@@ -47,4 +47,11 @@ public class StockService implements IStockService {
     public List<Stock> getAllStock() {
         return stockRepository.findAll();
     }
+
+    @Override
+    public int getStockQte(UUID stockId) {
+        var stock=stockRepository.findById(stockId)
+                .orElseThrow(()-> new NoSuchElementException("stock n'exite pas"));
+        return stock.getStockQte();
+    }
 }

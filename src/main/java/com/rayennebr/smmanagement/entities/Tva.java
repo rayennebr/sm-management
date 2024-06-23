@@ -13,22 +13,22 @@ public class Tva implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID tvaUid;
-    private UUID prodId;
+    private UUID factureId;
     private String tvaDes;
     private double tvaTaux;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "prodId",columnDefinition = "prodId",insertable = false,updatable = false)
-    private Product product;
+    @JoinColumn(referencedColumnName = "factureId",columnDefinition = "factureId",insertable = false,updatable = false)
+    private Facture facture;
 
     public Tva() {
     }
 
-    public Tva(UUID tvaUid, UUID prodId, String tvaDes, double tvaTaux, Product product) {
+    public Tva(UUID tvaUid, UUID factureId, String tvaDes, double tvaTaux, Facture facture) {
         this.tvaUid = tvaUid;
-        this.prodId = prodId;
+        this.factureId = factureId;
         this.tvaDes = tvaDes;
         this.tvaTaux = tvaTaux;
-        this.product = product;
+        this.facture = facture;
     }
 
     public UUID getTvaUid() {
@@ -39,12 +39,20 @@ public class Tva implements Serializable {
         this.tvaUid = tvaUid;
     }
 
-    public UUID getProdId() {
-        return prodId;
+    public UUID getFactureId() {
+        return factureId;
     }
 
-    public void setProdId(UUID prodId) {
-        this.prodId = prodId;
+    public void setFactureId(UUID factureId) {
+        this.factureId = factureId;
+    }
+
+    public Facture getFacture() {
+        return facture;
+    }
+
+    public void setFacture(Facture facture) {
+        this.facture = facture;
     }
 
     public String getTvaDes() {
@@ -63,35 +71,28 @@ public class Tva implements Serializable {
         this.tvaTaux = tvaTaux;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Tva tva = (Tva) o;
-        return Double.compare(tva.tvaTaux, tvaTaux) == 0 && Objects.equals(tvaUid, tva.tvaUid) && Objects.equals(prodId, tva.prodId) && Objects.equals(tvaDes, tva.tvaDes) && Objects.equals(product, tva.product);
+        return Double.compare(tva.tvaTaux, tvaTaux) == 0 && Objects.equals(tvaUid, tva.tvaUid) && Objects.equals(factureId, tva.factureId) && Objects.equals(tvaDes, tva.tvaDes) && Objects.equals(facture, tva.facture);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tvaUid, prodId, tvaDes, tvaTaux, product);
+        return Objects.hash(tvaUid, factureId, tvaDes, tvaTaux, facture);
     }
 
     @Override
     public String toString() {
         return "Tva{" +
                 "tvaUid=" + tvaUid +
-                ", prodId=" + prodId +
+                ", factureId=" + factureId +
                 ", tvaDes='" + tvaDes + '\'' +
                 ", tvaTaux=" + tvaTaux +
-                ", product=" + product +
+                ", facture=" + facture +
                 '}';
     }
 }
