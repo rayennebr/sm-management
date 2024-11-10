@@ -13,8 +13,8 @@ import java.util.UUID;
 @Component
 public class CategorieService implements ICategorieService {
 
-    private final CategorieRepository categorieRepository;
-    private final ICategorieMapper iCategorieMapper;
+        private final CategorieRepository categorieRepository;
+        private final ICategorieMapper iCategorieMapper;
 
     public CategorieService(CategorieRepository categorieRepository, ICategorieMapper iCategorieMapper) {
         this.categorieRepository = categorieRepository;

@@ -1,6 +1,7 @@
 package com.rayennebr.smmanagement.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "categorie")
+@Builder
 public class Categorie implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
