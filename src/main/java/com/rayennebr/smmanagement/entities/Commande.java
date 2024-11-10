@@ -1,6 +1,7 @@
 package com.rayennebr.smmanagement.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "commande")
+@Builder
 public class Commande implements Serializable {
 
     @Id

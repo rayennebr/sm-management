@@ -123,4 +123,18 @@ class CategorieServiceTest {
         assertNotNull(result);
         assertEquals("Updated Description", result.getCatDes());
     }
+
+    @Test
+    @DisplayName("should delete categorie")
+    void should_delete_categorie()
+    {
+        //when
+        when(categorieRepository.findById(categorie.getCatId())).thenReturn(Optional.of(categorie));
+        var result=categorieService.deleteCategorie(categorie.getCatId());
+
+        //then
+        verify(categorieRepository,times(1)).findById(categorie.getCatId());
+        assertEquals(categorie,result);
+        assertNotNull(result);
+    }
 }
