@@ -15,4 +15,6 @@ public interface IFactureService {
     Facture updateFacture(UUID factId,Facture facture);
     List<Facture> retrieveAllFacture();
     Facture validerFacture(UUID factId) throws GenericException;
+
+    List<Facture> getAllByCommandeId(UUID commandUID);
 }

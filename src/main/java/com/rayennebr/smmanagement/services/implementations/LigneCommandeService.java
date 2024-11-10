@@ -79,4 +79,14 @@ public class LigneCommandeService implements ILigneCommandeService {
     public List<LigneCommande> retrieveAllLigneCommande() {
         return ligneCommandeRepository.findAll();
     }
+
+    @Override
+    public List<LigneCommande> findAllByCommandeId(UUID commandeUID) {
+        return ligneCommandeRepository.findAllByCommandeId(commandeUID);
+    }
+
+    @Override
+    public List<LigneCommande> findAllByProdId(UUID prodUID) {
+        return ligneCommandeRepository.findAllByProdId(prodUID);
+    }
 }

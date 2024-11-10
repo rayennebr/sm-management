@@ -110,5 +110,22 @@ public class FactureController {
         }
     }
 
+    @GetMapping("/byCommandId/{commandUID}")
+    Response<List<Facture>> getAllByCommandeId(@PathVariable UUID commandUID)
+    {
+        try{
+            return Response.<List<Facture>>builder()
+                    .status(HttpStatus.OK)
+                    .data(factureService.getAllByCommandeId(commandUID))
+                    .message("success !")
+                    .build();
+        } catch (Exception e) {
+            return Response.<List<Facture>>builder()
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .data(null)
+                    .message(e.getMessage())
+                    .build();
+        }
+    }
 
 }

@@ -15,4 +15,5 @@ public interface IProductService {
     Product getProductById(UUID prdId);
     List<Product>getAllProduct();
     List<Product>verifyProductStock();
+    List<Product>findAllByCatId(UUID catUID);
 }

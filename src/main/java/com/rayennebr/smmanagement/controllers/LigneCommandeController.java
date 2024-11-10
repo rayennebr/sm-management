@@ -91,5 +91,40 @@ public class LigneCommandeController {
                     .build();
         }
     }
+
+    @GetMapping("/byCommandId/{commandUID}")
+    Response<List<LigneCommande>> findAllByCommandeId(@PathVariable UUID commandeUID){
+        try{
+            return Response.<List<LigneCommande>>builder()
+                    .status(HttpStatus.OK)
+                    .data(commandeService.findAllByCommandeId(commandeUID))
+                    .message("success !")
+                    .build();
+        } catch (Exception e) {
+            return Response.<List<LigneCommande>>builder()
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .data(null)
+                    .message(e.getMessage())
+                    .build();
+        }
+    }
+
+    @GetMapping("/byProdId/{prodUID}")
+    Response<List<LigneCommande>> findAllByProdId(@PathVariable UUID prodUID)
+    {
+        try{
+            return Response.<List<LigneCommande>>builder()
+                    .status(HttpStatus.OK)
+                    .data(commandeService.findAllByProdId(prodUID))
+                    .message("success !")
+                    .build();
+        } catch (Exception e) {
+            return Response.<List<LigneCommande>>builder()
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .data(null)
+                    .message(e.getMessage())
+                    .build();
+        }
+    }
     
 }

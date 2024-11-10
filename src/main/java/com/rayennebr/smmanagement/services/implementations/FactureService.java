@@ -75,4 +75,9 @@ public class FactureService implements IFactureService {
         throw new GenericException("Error when  validating facture", e);
     }
     }
+
+    @Override
+    public List<Facture> getAllByCommandeId(UUID commandUID) {
+        return factureRepository.findAllByCommandeId(commandUID);
+    }
 }

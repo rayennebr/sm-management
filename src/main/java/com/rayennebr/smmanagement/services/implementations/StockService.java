@@ -4,6 +4,7 @@ import com.rayennebr.smmanagement.entities.Stock;
 import com.rayennebr.smmanagement.mappers.IStockMapper;
 import com.rayennebr.smmanagement.repositories.StockRepository;
 import com.rayennebr.smmanagement.services.IStockService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,13 +14,11 @@ import java.util.UUID;
 @Component
 public class StockService implements IStockService {
 
-    private final StockRepository stockRepository;
-    private final IStockMapper stockMapper;
+    @Autowired
+    private  StockRepository stockRepository;
+    @Autowired
+    private  IStockMapper stockMapper;
 
-    public StockService(StockRepository stockRepository, IStockMapper stockMapper) {
-        this.stockRepository = stockRepository;
-        this.stockMapper = stockMapper;
-    }
 
     @Override
     public Stock saveStock(Stock stock) {

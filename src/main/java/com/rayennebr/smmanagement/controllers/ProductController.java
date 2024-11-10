@@ -91,4 +91,23 @@ public class ProductController {
                     .build();
         }
     }
+
+    @GetMapping("/byCat/{catUID}")
+    Response<List<Product>>findAllByCatId(@PathVariable UUID catUID)
+    {
+        try{
+            return Response.<List<Product>>builder()
+                    .status(HttpStatus.OK)
+                    .data(productService.findAllByCatId(catUID))
+                    .message("success !")
+                    .build();
+        } catch (Exception e) {
+            return Response.<List<Product>>builder()
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .data(null)
+                    .message(e.getMessage())
+                    .build();
+        }
+    }
+
 }

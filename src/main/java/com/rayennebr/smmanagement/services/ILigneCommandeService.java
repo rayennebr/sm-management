@@ -14,4 +14,6 @@ public interface ILigneCommandeService {
     LigneCommande updateLigneCommande(UUID ligCommId,LigneCommande commande);
     LigneCommande deleteLigneCommande(UUID ligComId);
     List<LigneCommande> retrieveAllLigneCommande();
+    List<LigneCommande> findAllByCommandeId(UUID commandeUID);
+    List<LigneCommande> findAllByProdId(UUID prodUID);
 }

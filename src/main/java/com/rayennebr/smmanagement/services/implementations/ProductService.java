@@ -79,4 +79,9 @@ public class ProductService implements IProductService {
                 })
                 .toList();
     }
+
+    @Override
+    public List<Product> findAllByCatId(UUID catUID) {
+        return productRepository.findAllByCatId(catUID);
+    }
 }
